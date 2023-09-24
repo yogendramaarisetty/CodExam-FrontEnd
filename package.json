@@ -1,0 +1,22 @@
+{
+  "name": "stackblitz-starters-jb1gbj",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@monaco-editor/react": "^4.5.2",
+    "@types/react": ">=16 <= 18",
+    "monaco-editor": "^0.39.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-monaco-editor": "^0.54.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  }
+}
