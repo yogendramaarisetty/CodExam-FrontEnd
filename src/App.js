@@ -3,7 +3,7 @@ import './style.css';
 import CodeEditor from './CodeEditor';
 
 export default function App() {
-  <CodeEditor codesByLanguage={codesByLanguage} />;
+  return <CodeEditor codesByLanguage={codesByLanguage} />;
 }
 
 const codesByLanguage = {
