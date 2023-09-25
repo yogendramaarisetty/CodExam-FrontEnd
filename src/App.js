@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Editor from '@monaco-editor/react';
+import React from 'react';
 import './style.css';
 import CodeEditor from './CodeEditor';
+
 export default function App() {
   <CodeEditor codesByLanguage={codesByLanguage} />;
 }
