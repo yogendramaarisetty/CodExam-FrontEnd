@@ -14,3 +14,17 @@ h1 {
   font-weight: 800;
   font-size: 1.5rem;
 }
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbar select {
+  margin-right: 0.5rem;
+}
+
+.toolbar .dark-mode-toggle {
+  align-self: flex-end;
+}
