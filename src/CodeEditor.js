@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Editor from '@monaco-editor/react';
-import './style.css';
+import React, { useState, useRef } from "react";
+import Editor from "@monaco-editor/react";
+import "./style.css";
 
 export default function CodeEditor({ codesByLanguage }) {
-  const languages = ['python', 'c', 'cpp', 'java', 'csharp'];
-  const [language, setLanguage] = useState('python');
+  const languages = ["python", "c", "cpp", "java", "csharp"];
+  const [language, setLanguage] = useState("python");
   const [codes, setCodes] = useState(codesByLanguage);
   const editorRef = useRef(null);
 
@@ -20,9 +20,9 @@ export default function CodeEditor({ codesByLanguage }) {
 
   const handleCodeChange = (newValue, e) => {
     const updatedCodes = codes.slice();
-    updatedCodes[language]['code'] = newValue;
+    updatedCodes[language]["code"] = newValue;
     setCodes(updatedCodes);
-    localStorage.setItem('codes', JSON.stringify(updatedCodes));
+    localStorage.setItem("codes", JSON.stringify(updatedCodes));
   };
 
   const handleRunClick = () => {
@@ -33,9 +33,6 @@ export default function CodeEditor({ codesByLanguage }) {
     // Submit the code
   };
 
-  const options = {
-    language,
-  };
   return (
     <div>
       <div className="toolbar">
@@ -48,7 +45,7 @@ export default function CodeEditor({ codesByLanguage }) {
       <Editor
         height="70vh"
         language={language}
-        value={codes[language]['code']}
+        value={codes[language]["code"]}
         onChange={handleCodeChange}
       />
       ;
