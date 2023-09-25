@@ -19,7 +19,7 @@ export default function CodeEditor({ codesByLanguage }) {
   };
 
   const handleCodeChange = (newValue, e) => {
-    const updatedCodes = codes.slice();
+    const updatedCodes = JSON.parse(JSON.stringify(codes));
     updatedCodes[language]["code"] = newValue;
     setCodes(updatedCodes);
     localStorage.setItem("codes", JSON.stringify(updatedCodes));
