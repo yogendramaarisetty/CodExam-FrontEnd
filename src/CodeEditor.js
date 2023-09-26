@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
-import Editor from "@monaco-editor/react";
+import { Editor } from "@monaco-editor/react";
 import DarkModeToggle from "./DarkModeToggle";
 import "./style.css";
 import judgeService from "./service";
-import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
+import constrainedEditor from "constrained-editor-plugin";
 
 const service = new judgeService(
   "cf4305d31bmsh82518687544739ep179fd2jsnf6d65d6ee270"
@@ -18,9 +18,37 @@ export default function CodeEditor({ codesByLanguage }) {
   const [output, setOutput] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const editorRef = useRef(null);
+
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
   };
+
+  function handleOnMount(editor, monaco) {
+    editorRef.current = editor;
+
+    const model = editor.getModel();
+
+    // - Configuration for the Constrained Editor : Starts Here
+    const constrainedInstance = constrainedEditor(monaco);
+    constrainedInstance.initializeIn(editor);
+    constrainedInstance.addRestrictionsTo(model, [
+      {
+        // range : [ startLine, startColumn, endLine, endColumn ]
+        range: [1, 7, 1, 12], // Range of Util Variable name
+        label: "utilName",
+        validate: function (currentlyTypedValue, newRange, info) {
+          const noSpaceAndSpecialChars = /^[a-z0-9A-Z]*$/;
+          return noSpaceAndSpecialChars.test(currentlyTypedValue);
+        }
+      },
+      {
+        range: [3, 1, 3, 1], // Range of Function definition
+        allowMultiline: true,
+        label: "funcDefinition"
+      }
+    ]);
+  }
 
   const handleCodeChange = (newValue, e) => {
     const updatedCodes = JSON.parse(JSON.stringify(codes));
@@ -84,6 +112,7 @@ export default function CodeEditor({ codesByLanguage }) {
         value={codes[language]["code"]}
         onChange={handleCodeChange}
         theme={theme}
+        onMount={handleOnMount}
       />
       <div className="bar">
         {isSubmitting ? (
