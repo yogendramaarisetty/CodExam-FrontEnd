@@ -23,7 +23,6 @@
   "devDependencies": {
     "react-scripts": "latest"
   },
-<<<<<<< HEAD
   "browserslist": {
     "production": [
       ">0.2%",
@@ -37,8 +36,3 @@
     ]
   }
 }
-=======
-  "keywords": [],
-  "description": ""
-}
->>>>>>> 572726ab0e5697ca329cfa9b0ac6a7074c56add9
