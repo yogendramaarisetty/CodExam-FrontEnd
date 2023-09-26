@@ -14,7 +14,7 @@ export default function App() {
 
 const codesByLanguage = {
   python: {
-    code: "print('Hello, World!')\n# This is a Python sample code snippet."
+    code: "print('Hello, Worlds!')\n# This is a Python sample code snippet."
   },
   java: {
     code:

@@ -17,6 +17,7 @@ export default function CodeEditor({ codesByLanguage }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [output, setOutput] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  let restrictions = [];
 
   const editorRef = useRef(null);
 
@@ -26,28 +27,14 @@ export default function CodeEditor({ codesByLanguage }) {
 
   function handleOnMount(editor, monaco) {
     editorRef.current = editor;
-
-    const model = editor.getModel();
-
-    // - Configuration for the Constrained Editor : Starts Here
-    const constrainedInstance = constrainedEditor(monaco);
-    constrainedInstance.initializeIn(editor);
-    constrainedInstance.addRestrictionsTo(model, [
-      {
-        // range : [ startLine, startColumn, endLine, endColumn ]
-        range: [1, 7, 1, 12], // Range of Util Variable name
-        label: "utilName",
-        validate: function (currentlyTypedValue, newRange, info) {
-          const noSpaceAndSpecialChars = /^[a-z0-9A-Z]*$/;
-          return noSpaceAndSpecialChars.test(currentlyTypedValue);
-        }
-      },
-      {
-        range: [3, 1, 3, 1], // Range of Function definition
-        allowMultiline: true,
-        label: "funcDefinition"
-      }
-    ]);
+    // const constrainedInstance = constrainedEditor(monaco);
+    // const model = editor.getModel();
+    // constrainedInstance.initializeIn(editor);
+    // restrictions.push({
+    //   range: [1, 1, 2, 10],
+    //   allowMultiline: true
+    // });
+    // constrainedInstance.addRestrictionsTo(model, restrictions);
   }
 
   const handleCodeChange = (newValue, e) => {
