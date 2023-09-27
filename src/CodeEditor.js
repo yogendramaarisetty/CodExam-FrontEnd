@@ -18,7 +18,15 @@ export default function CodeEditor({ codesByLanguage }) {
   const [output, setOutput] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   let restrictions = [];
-
+  const darkCodeStyle = {
+    backgroundColor: "#333", // Dark background color
+    color: "#fff", // Text color
+    padding: "10px",
+    fontFamily: "monospace",
+    borderRadius: "4px",
+    margin: "10px",
+    display: "block"
+  };
   const editorRef = useRef(null);
 
   const handleLanguageChange = (e) => {
@@ -90,11 +98,10 @@ export default function CodeEditor({ codesByLanguage }) {
         </select>
         <DarkModeToggle
           onChange={handleModeChange}
-          toggleText={isDarkMode ? "Light Mode" : "Dark Mode"}
+          toggleText={!isDarkMode ? "Light Mode" : "Dark Mode"}
         />
       </div>
       <Editor
-        height="70vh"
         language={language}
         value={codes[language]["code"]}
         onChange={handleCodeChange}
@@ -116,7 +123,7 @@ export default function CodeEditor({ codesByLanguage }) {
         )}{" "}
       </div>
       <div className="output">
-        <code>{output}</code>
+        <code style={darkCodeStyle}>{output}</code>
       </div>
     </div>
   );
